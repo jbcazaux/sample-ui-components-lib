@@ -1,3 +1,27 @@
+- create the libraray with rolldown/vite
+- create a Button component
+  add classnames lib
+  add scss lib
+  add variables.scss
+- create a dummy component with 'use client' directive (useState ? onClick ?)
+- add eslint / prettier
+  - config file
+  - add deps
+- add stylelint
+  - npm create stylelint@latest (https://stylelint.io/user-guide/get-started)
+  - npm i -D -E stylelint-config-standard-scss
+  -  "source.fixAll.stylelint": "always", in settings.json
+
+- add storybook
+   - npm i @storybook/addon-a11y
+   - exclude stories from dts
+   - Button stories file
+   - update tsconfig.node.js with "include": ["vite.config.ts", ".storybook/**/*.ts"]
+- add chromatic
+- deploy to npm.js
+
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

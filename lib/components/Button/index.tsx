@@ -1,23 +1,36 @@
 'use client'
 
-import { useState } from 'react';
-import styles from './style.module.scss';
+import cn from 'classnames'
+import styles from './style.module.scss'
 
-interface Props {
-  label: string;
-
-}   
-
-const Button = ({label}: Props) => {
-  const [count, setCount] = useState<number>(0)
-
-const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-  setCount(prev => prev + 1)
-  e.preventDefault()
-
+export interface ButtonProps {
+  /** Is this the principal call to action on the page? */
+  primary?: boolean
+  /** How large should the button be? */
+  size?: 'small' | 'medium' | 'large'
+  /** Button contents */
+  label: string
+  /** Optional click handler */
+  onClick?: () => void
 }
 
-  return <button onClick={handleClick} className={styles.button}>{label} - {count}</button>
-}
+/** Primary UI component for user interaction */
+const Button = ({
+  primary = false,
+  size = 'medium',
+  label,
+  ...props
+}: ButtonProps) => (
+  <button
+    type="button"
+    className={cn(styles.button, styles[size], {
+      [styles.primary]: primary,
+      [styles.secondary]: !primary,
+    })}
+    {...props}
+  >
+    {label}
+  </button>
+)
 
-export {Button}
+export { Button }
