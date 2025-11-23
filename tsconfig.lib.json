@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.lib.tsbuildinfo",
-    "target": "ES2022",
-    "useDefineForClassFields": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.lib.tsbuildinfo", // ?
+    "target": "ES2022", // ?
+    "useDefineForClassFields": true, // ???
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "types": ["vite/client"],
     "skipLibCheck": true,
 
-    // copied from example
-    "forceConsistentCasingInFileNames": true,
-    // "jsx": "preserve",
-    // "jsxImportSource": "vue",
-    "noImplicitThis": true,
+    "forceConsistentCasingInFileNames": true, // lint ?
+    "noImplicitThis": true, // move to lint ?
     "esModuleInterop": true,
 
     /* Bundler mode */
@@ -29,7 +26,12 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* alias */
+    "paths": {
+      "@/storybook/*": ["./.storybook/*"]
+    }
   },
   "include": ["lib/**/*.ts", "lib/**/*.tsx"],
 }

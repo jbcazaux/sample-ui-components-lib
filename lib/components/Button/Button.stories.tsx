@@ -1,6 +1,8 @@
 import { fn } from 'storybook/test'
+
 import { Button } from '.'
-import preview from '../../../.storybook/preview'
+
+import preview from '@/storybook/preview'
 
 const meta = preview.meta({
   title: 'Button',

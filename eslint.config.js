@@ -1,19 +1,16 @@
-import storybook from "eslint-plugin-storybook";
-
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
-
+import importPlugin from 'eslint-plugin-import';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import stylistic from '@stylistic/eslint-plugin'
 
 export default defineConfig([
-  globalIgnores(['dist']),
+  globalIgnores(['dist', 'storybook-static', '*.config.*js', '!.storybook']),
   {
-    files: ['**/*.{ts,tsx}'],
     extends: [
       js.configs.recommended,
       eslintPluginPrettierRecommended,
@@ -21,6 +18,8 @@ export default defineConfig([
       tseslint.configs.strictTypeChecked,
       tseslint.configs.stylisticTypeChecked,
       reactRefresh.configs.vite,
+      importPlugin.flatConfigs.recommended, 
+      importPlugin.flatConfigs.typescript,
     ],
     plugins: {
       '@stylistic': stylistic
@@ -44,14 +43,14 @@ export default defineConfig([
       'react-hooks/exhaustive-deps': 'error',
       'react-hooks/unsupported-syntax': 'error',
       'react-hooks/incompatible-library': 'error',
-      /*'import/order': [
+      'import/order': [
         'error',
         {
           alphabetize: {
             order: 'asc',
             caseInsensitive: true,
           },
-          groups: ['builtin', 'external', 'parent', 'sibling', 'index'],
+          groups: ['builtin', "external", "internal", 'parent', 'sibling', 'index'],
           'newlines-between': 'always',
           pathGroups: [
             {
@@ -61,7 +60,7 @@ export default defineConfig([
             },
           ],
         },
-      ],*/
+      ]
     },
     languageOptions: {
       ecmaVersion: 'latest',
@@ -70,5 +69,19 @@ export default defineConfig([
         projectService: true,
       },
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          //alwaysTryTypes: true, // Always try to resolve types under `<root>@types` directory even if it doesn't contain any source code, like `@types/unist`
+          project: 'tsconfig.json',
+        },
+      },
+    },
   },
+  {
+    linterOptions: {
+      reportUnusedInlineConfigs: 'error',
+			reportUnusedDisableDirectives: "error",
+    },
+  }
 ])

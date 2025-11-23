@@ -1,4 +1,5 @@
-import preview from '../../../.storybook/preview'
+import preview from '@/storybook/preview'
+
 import { Text } from '.'
 
 const meta = preview.meta({
@@ -12,6 +13,6 @@ const meta = preview.meta({
 
 export const Primary = meta.story({
   args: {
-    text: 'coucou',
+    text: 'hello world !',
   },
 })
